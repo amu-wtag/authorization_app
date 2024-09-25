@@ -15,8 +15,13 @@ Rails.application.routes.draw do
   get "sessions/destroy"
   get "sessions/login"
   get "sessions/logout", to: "sessions#destroy"
-  post "sessions/attempt_login"
   get "sessions/attempt_logout"
+  post "sessions/attempt_login"
+
+  get "users/index"
+  get "users/new"
+  get "users/edit"
+  get "users/delete"
 
   # get 'login', to: 'sessions#login', as: 'login'
   # get 'logout', to: 'sessions#destroy', as: 'logout'
@@ -25,10 +30,6 @@ Rails.application.routes.draw do
   resources :posts
 
 
-  get "users/index"
-  get "users/new"
-  get "users/edit"
-  get "users/delete"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

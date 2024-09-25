@@ -1,17 +1,19 @@
-<h1>Posts</h1>
+<div class="center">
+  <h1>Posts</h1>
 
-<% if logged_in? %>
-  <%= link_to 'New Post', new_post_path %>
-<% end %>
-
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post_path(post) %>
-      <% if logged_in? && post.user == current_user %>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </li>
+  <% if logged_in? %>
+    <%= link_to 'New Post', new_post_path %>
   <% end %>
-</ul>
+
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to post.title, post_path(post) %>
+        <% if logged_in? && post.user == current_user %>
+          <%= link_to 'Edit', edit_post_path(post) %>
+          <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
