@@ -5,7 +5,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new(role: 'guest')
-    # These methods (admin?, user?) are typically defined in the User model, either manually or through an enum f
+    # These methods (admin?, user?) are typically defined in the User model, either manually or through an enum
     if user.admin?
       # can :manage, :all
       can :manage, Post
