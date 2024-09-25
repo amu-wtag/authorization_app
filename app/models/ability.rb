@@ -4,6 +4,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new(role: 'guest')
+    # These methods (admin?, user?) are typically defined in the User model, either manually or through an enum f
+    if user.admin?
+      # can :manage, :all
+      can :manage, Post
+    elsif user.user?
+      can :read, Post # Users can read posts
+      can :create, Post # Users can create posts
+      can :update, Post, user_id: user.id # Users can update their own posts
+      can :destroy, Post, user_id: user.id # Users can delete their own posts
+    else
+      can :read, :all
+    end
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

@@ -1,0 +1,11 @@
+<div class="center">
+  <% if logged_in? %>
+    <p>Welcome, <%= current_user.email %>! Your role is: <%= current_user.role %>.</p>
+    <%= link_to 'Logout', sessions_logout_path, method: :delete %>
+  <% else %>
+    <p>You are not logged in. <%= link_to 'Login', sessions_login_path %></p>
+  <% end %>
+
+  <%= link_to "Post", posts_index_path %>
+
+</div>
