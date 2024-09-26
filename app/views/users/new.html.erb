@@ -1,2 +1,30 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="center">
+    <h1>Signup</h1>
+    <%= form_with(model: @user, url: users_create_path, method: :post) do |f| %>
+        <div>
+            <%= f.label :username, "Username" %>
+            <%= f.text_field :username %>
+        </div>
+
+        <div>
+            <%= f.label :email, "Email" %>
+            <%= f.email_field :email %>
+        </div>
+
+        <div>
+            <%= f.label :password, "Password" %>
+            <%= f.password_field :password %>
+        </div>
+
+        <div>
+            <%= f.label :role, "Role" %>
+            <%= f.select :role, {Admin: 'admin', User: 'user', Guest: 'guest'} %>
+        </div>
+
+        <div>
+            <%= f.submit "Submit", disable_with: 'Submiting...' %>
+        </div>
+    <% end %>
+
+
+</div>

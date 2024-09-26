@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   layout 'application'
-
+  
   load_and_authorize_resource
 
   # before_action :confirm_logged_in
@@ -14,11 +14,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    Rails.logger.debug("User Params: #{user_params.inspect}")
     if @user.save
       flash[:notice] = 'User created successfully.'
-      redirect_to users_path
+      redirect_to root_path
     else
-      render('new')
+      render :new
     end
   end
 
@@ -30,9 +31,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = 'User updated successfully.'
-      redirect_to users_path
+      redirect_to root_path
     else
-      render('edit')
+      render :edit
     end
   end
 
@@ -44,14 +45,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = 'User destroyed successfully.'
-    redirect_to users_path
+    redirect_to root_path
   end
 
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :role)
   end
 
   # def confirm_logged_in

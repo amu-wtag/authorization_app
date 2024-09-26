@@ -16,6 +16,7 @@ class Ability
       can :destroy, Post, user_id: user.id # Users can delete their own posts
     else
       can :read, :all
+      can :create, User
     end
     # Define abilities for the user here. For example:
     #

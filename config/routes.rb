@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get "users/index"
   get "users/new"
+  post "users/create"
   get "users/edit"
   get "users/delete"
 
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
   
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
+  resources :users
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
