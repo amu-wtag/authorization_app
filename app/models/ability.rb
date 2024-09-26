@@ -14,9 +14,11 @@ class Ability
       can :create, Post # Users can create posts
       can :update, Post, user_id: user.id # Users can update their own posts
       can :destroy, Post, user_id: user.id # Users can delete their own posts
+      can :confirm, User
     else
       can :read, :all
       can :create, User
+      can :confirm, User
     end
     # Define abilities for the user here. For example:
     #

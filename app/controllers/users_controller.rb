@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   layout 'application'
-  
+
   load_and_authorize_resource
 
-  # before_action :confirm_logged_in
   def index
     @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def new
@@ -14,8 +17,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    Rails.logger.debug("User Params: #{user_params.inspect}")
+    # Rails.logger.debug("User Params: #{user_params.inspect}")
     if @user.save
+      UserMailer.welcome_email(@user).deliver_now
       flash[:notice] = 'User created successfully.'
       redirect_to root_path
     else
@@ -48,19 +52,18 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-
+  def confirm
+    @user = User.find_by(confirmation_token: params[:token])
+    if @user && @user.confirmed_at.nil?
+      @user.confirm!
+      redirect_to @user, notice: "Your email has been confirmed successfully!"
+    else
+      redirect_to root_path, alert: "Invalid confirmation token or email already confirmed."
+    end
+  end
   private
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :role)
   end
-
-  # def confirm_logged_in
-  #   if session[:user_id] 
-  #     return 
-  #   end
-
-  #   flash[:notice] = "Please login."
-  #   redirect_to Something_path
-  # end
 end

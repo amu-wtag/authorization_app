@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
   resources :users
+  get '/users/confirmation/:token', to: 'users#confirm', as: 'confirmation'
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
