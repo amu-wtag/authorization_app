@@ -24,9 +24,9 @@ class UserMailer < ApplicationMailer
         mail(to: @user.email, subject: 'Password Reset')
     end
 
-    def confirmation_email(user)
-        @user = user
-        @confirmation_url = confirmation_url(token: @user.confirmation_token)
-        mail(to: @user.email, subject: "Confirm your email address", template_name: 'welcome')
-    end
+    # def confirmation_email(user)
+    #     @user = user
+    #     @confirmation_url = confirmation_url(token: @user.confirmation_token)
+    #     mail(to: @user.email, subject: "Confirm your email address", template_name: 'welcome')
+    # end
 end

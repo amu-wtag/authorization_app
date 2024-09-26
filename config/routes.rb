@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post "users/create"
   get "users/edit"
   get "users/delete"
+  get 'users/confirmation/:token', to: 'users#confirm', as: 'confirmation'
 
   # get 'login', to: 'sessions#login', as: 'login'
   # get 'logout', to: 'sessions#destroy', as: 'logout'
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
   resources :users
-  get '/users/confirmation/:token', to: 'users#confirm', as: 'confirmation'
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
