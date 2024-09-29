@@ -53,14 +53,16 @@ class UsersController < ApplicationController
   end
 
   def confirm
+    print "## token: #{params[:token]}"
     @user = User.find_by(confirmation_token: params[:token])
     if @user && @user.confirmed_at.nil?
-      @user.confirm!
+      @user.update(confirmed_at: Time.now, confirmation_token: nil)
       redirect_to @user, notice: "Your email has been confirmed successfully!"
     else
       redirect_to root_path, alert: "Invalid confirmation token or email already confirmed."
     end
   end
+
   private
 
   def user_params

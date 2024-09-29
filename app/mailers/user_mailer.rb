@@ -14,7 +14,9 @@ class UserMailer < ApplicationMailer
         # # mail(to: @user.email, subject: 'Welcome to My Awesome Site', template_name: 'new_email_template')
 
         @user = user
+        # here confirmation_url is a helper method that generates a URL for email confirmation in your application.
         @confirmation_url = confirmation_url(token: @user.confirmation_token)
+        print "## token: #{@confirmation_url}"
         mail(to: @user.email, subject: "Confirm your email address")
     end
 
@@ -23,10 +25,4 @@ class UserMailer < ApplicationMailer
         @reset_url = edit_password_reset_url(user.reset_token, email: user.email)
         mail(to: @user.email, subject: 'Password Reset')
     end
-
-    # def confirmation_email(user)
-    #     @user = user
-    #     @confirmation_url = confirmation_url(token: @user.confirmation_token)
-    #     mail(to: @user.email, subject: "Confirm your email address", template_name: 'welcome')
-    # end
 end

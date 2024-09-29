@@ -10,8 +10,4 @@ class User < ApplicationRecord
     def generate_confirmation_token
         self.confirmation_token = SecureRandom.hex(10)
     end
-
-    def confirm!
-        update(confirmed_at: Time.current, confirmation_token: nil)
-    end
 end
