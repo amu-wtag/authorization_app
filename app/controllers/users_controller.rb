@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    print "## token: #{params[:token]}"
+    # print "## token: #{params[:token]}"
     @user = User.find_by(confirmation_token: params[:token])
     if @user && @user.confirmed_at.nil?
       @user.update(confirmed_at: Time.now, confirmation_token: nil)

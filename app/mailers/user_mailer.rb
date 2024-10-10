@@ -16,7 +16,7 @@ class UserMailer < ApplicationMailer
         @user = user
         # here confirmation_url is a helper method that generates a URL for email confirmation in your application.
         @confirmation_url = confirmation_url(token: @user.confirmation_token)
-        print "## token: #{@confirmation_url}"
+        # print "## token: #{@confirmation_url}"
         mail(to: @user.email, subject: "Confirm your email address")
     end
 
