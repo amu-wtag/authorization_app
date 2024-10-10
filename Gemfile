@@ -38,7 +38,7 @@ gem "cancancan", "~> 3.3"
 
 gem 'sassc-rails'
 
-gem 'bootstrap', '~> 5.0.2'
+gem 'bootstrap', '~> 5.3.3'
 gem 'popper_js', '~> 2.0'
 
 gem 'sidekiq'
