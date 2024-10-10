@@ -27,8 +27,8 @@ RSpec.describe User, type: :model do
 
     describe "A regular user" do
         let(:user) { create(:user) }  # Assuming you have a factory for User
-        let(:post) { Post.new(user_id: user.id) } 
-        subject { Ability.new(user) } 
+        let(:post) { Post.new(user_id: user.id) }
+        subject { Ability.new(user) }
 
         it "can read post" do
             expect(subject).to be_able_to(:read, Post) 
